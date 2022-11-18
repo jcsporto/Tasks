@@ -1,5 +1,10 @@
 class EnemiesController < ApplicationController
   def update
+    if @enemy.update(enemy_params)
+      render json: @enemy, status: :ok
+    else 
+      render json: { errors: @enemy.errors }, status: :uprocessable_entity
+    end
   end
 
   def destroy

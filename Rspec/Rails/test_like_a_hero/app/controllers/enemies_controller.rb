@@ -8,6 +8,8 @@ class EnemiesController < ApplicationController
   end
 
   def destroy
+    @enemy.destroy
+    head 204
   end
 
   before_action :set_enemy

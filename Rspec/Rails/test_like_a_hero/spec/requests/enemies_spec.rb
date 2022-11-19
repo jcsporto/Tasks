@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Enemies", type: :request do
-  describe "GET /enemies" do
+  describe "PUT /enemies" do
     context 'when the enemy exists' do
       it 'returns status code 200' do
         enemy = create( :enemy)
@@ -10,13 +10,7 @@ RSpec.describe "Enemies", type: :request do
         expect(response).to have_http_status(200)
       end
 
-      it 'returns status code 204' do
-        enemy = create( :enemy)
-        delete "/enemies/#{enemy.id}"
-        expect(response).to have_http_status(204)
-      end
-
-      it 'updates the enemy'do
+      it 'updates the enemy' do
         enemy = create( :enemy)
         enemy_attributes = attributes_for( :enemy)
         put "/enemies/#{enemy.id}", params: enemy_attributes

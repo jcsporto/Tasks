@@ -9,8 +9,15 @@ RSpec.describe "Enemies", type: :request do
         put "/enemies/#{enemy.id}", params: enemy_attributes
         expect(response).to have_http_status(200)
       end
-      
-      it 'updates the record'
+
+      it 'updates the enemy'do
+        enemy = create( :enemy)
+        enemy_attributes = attributes_for( :enemy)
+        put "/enemies/#{enemy.id}", params: enemy_attributes
+        
+        expect(enemy.reload).to have_attibutes(enemy_attributes)
+      end
+
       it 'returns the enemy updated'
     end
 

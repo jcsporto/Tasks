@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is invalid if the level is not between 1 and 99"
+  it "returns the correct hero title"
 end

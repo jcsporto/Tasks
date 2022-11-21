@@ -9,6 +9,6 @@ describe Hero do
 
     it 'has more than 1000 HP points' do 
         hero = Hero.new
-        expect(hero.points).to eq(1001)
+        expect(hero.hp).to eq(1000)
     end
 end

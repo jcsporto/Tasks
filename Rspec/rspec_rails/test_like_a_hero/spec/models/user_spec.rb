@@ -1,15 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-   pending "add some examples to (or delete) #{__FILE__}"  
-   end
-   
-end
+  it "is invalid if the level is not between 1 and 99"  do
+    nickname = FFaker::Name.first_name
+    kind = %i[knight wizard].sample 
+    level = FFaker::Random.rand(100..9999)
+    user = User.new(nickname: nickname, kind: kind, level: level)
 
-RSpec.describe User, type: :model do
-  it "is invalid if the level is not between 1 and 99" do
-    expect(User.create(nickname: 'Chronos', kind: :wizard, level: 100)).to_not be_valid 
+    expect(user).to_not be_valid    
+  end
+
+  it "returns the correct hero title" do
+    nickname = FFaker::Name.first_name
+    kind = %i[knight wizard].sample 
+    level = FFaker::Random.rand(1..99)
+
+    user = User.create(nickname: 'Chronos', kind: :wizard, level: 1)
+    expect(user.title).tp eq("#{kind} #{nickname} ##{level}")
   end  
-
-  it "returns the correct hero title"
 end
